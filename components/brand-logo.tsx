@@ -19,13 +19,13 @@ export function BrandLogo({
   textSize = 'md',
 }: BrandLogoProps) {
   const textSizeClasses = {
-    sm: 'text-base',
+    sm: 'text-sm',
     md: 'text-xl',
     lg: 'text-2xl',
   }
 
   const subtextSizeClasses = {
-    sm: 'text-[10px]',
+    sm: 'text-[8px]',
     md: 'text-xs',
     lg: 'text-xs',
   }
@@ -36,18 +36,18 @@ export function BrandLogo({
         <Image
           src="/logo.png"
           alt="Discovery Medical Center"
-          width={14}
-          height={14}
+          width={12}
+          height={12}
           className="w-auto h-auto"
           priority
         />
       </div>
       {showText && (
         <div className="min-w-0">
-          <h1 className={`${textSizeClasses[textSize]} font-bold text-sidebar-foreground leading-tight`}>
-            Discovery
+          <h1 className={`${textSizeClasses[textSize]} font-bold text-sidebar-foreground leading-none`}>
+            DMC
           </h1>
-          <p className={`${subtextSizeClasses[textSize]} text-muted-foreground leading-tight`}>
+          <p className={`${subtextSizeClasses[textSize]} text-muted-foreground leading-none`}>
             Medical Center
           </p>
         </div>

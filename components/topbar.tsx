@@ -42,7 +42,7 @@ export function TopBar() {
   const initials = getInitials(user?.name)
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-40 h-20 bg-background border-b border-border flex items-center justify-between px-4 md:px-6 md:left-64">
+    <div className="fixed top-0 left-0 right-0 z-40 h-16 bg-background border-b border-border flex items-center justify-between px-4 md:px-6 md:left-64">
       <div className="flex-1" />
 
       {/* Profile Dropdown */}
