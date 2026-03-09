@@ -18,7 +18,7 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
       <TopBar />
 
       {/* Main content with sidebar offset on desktop */}
-      <main className="md:ml-64 pt-16 pb-8 min-h-screen overflow-auto">
+      <main className="md:ml-64 pt-24 pb-8 min-h-screen overflow-auto">
         <div className="p-4 md:p-8">
           {children}
         </div>

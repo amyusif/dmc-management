@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { BrandLogo } from '@/components/brand-logo'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   LayoutDashboard,
@@ -22,7 +22,6 @@ import {
   FolderOpen,
   UserCircle,
 } from 'lucide-react'
-import { ThemeToggle } from '@/components/theme-toggle'
 
 interface NavLink {
   type: 'link'
@@ -110,10 +109,15 @@ const recordHrefs = ['/staff', '/patients', '/records', '/personal-data']
 export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
   const pathname = usePathname()
   const router = useRouter()
+  const [mounted, setMounted] = useState(false)
   const [open, setOpen] = useState(false)
   const [recordOpen, setRecordOpen] = useState(
     () => recordHrefs.some((href) => pathname === href || pathname.startsWith(href + '/'))
   )
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleLogout = async () => {
     try {
@@ -139,11 +143,21 @@ export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
           open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
       >
-        <div className="h-16 flex items-center px-4 border-b border-sidebar-border">
-          <BrandLogo showText={true} href="/dashboard" logoSize={12} textSize="sm" />
+        <div className="flex items-center gap-3 p-6 border-b border-sidebar-border">
+          <Image
+            src="/logo.svg"
+            alt="MediCare Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8"
+          />
+          <div>
+            <h1 className="text-xl font-bold text-sidebar-foreground">Discovery</h1>
+            <p className="text-xs text-muted-foreground">Medical Center</p>
+          </div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+        <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-2">
           {navItems.map((item) => {
             if (item.type === 'link') {
               const link = item as NavLink
@@ -179,7 +193,7 @@ export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
             if (filteredChildren.length === 0) return null
 
             const isOpen = recordOpen
-            return (
+            return mounted ? (
               <Collapsible
                 key={group.label}
                 open={isOpen}
@@ -228,24 +242,11 @@ export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
                   </div>
                 </CollapsibleContent>
               </Collapsible>
-            )
+            ) : null
           })}
         </nav>
 
-        <div className="p-4 border-t border-sidebar-border space-y-2">
-          <div className="flex items-center justify-between gap-2 px-2">
-            <span className="text-sm text-muted-foreground">Theme</span>
-            <ThemeToggle />
-          </div>
-          <Button
-            onClick={handleLogout}
-            variant="outline"
-            className="w-full justify-start gap-3"
-          >
-            <LogOut className="w-5 h-5" />
-            Logout
-          </Button>
-        </div>
+
       </aside>
 
       {open && (
