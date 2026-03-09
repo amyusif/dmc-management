@@ -139,8 +139,8 @@ export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
           open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
       >
-        <div className="p-6 border-b border-sidebar-border">
-          <BrandLogo showText={true} href="/dashboard" logoSize={40} textSize="md" />
+        <div className="h-16 flex items-center px-6 border-b border-sidebar-border">
+          <BrandLogo showText={true} href="/dashboard" logoSize={28} textSize="sm" />
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">

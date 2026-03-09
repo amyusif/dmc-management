@@ -6,7 +6,9 @@ interface User {
   id: string
   username: string
   name: string
+  email?: string | null
   role: string
+  avatar?: string | null
   active: boolean
 }
 
