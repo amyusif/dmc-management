@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Heart, AlertCircle, Loader2 } from 'lucide-react'
+import { BrandLogo } from '@/components/brand-logo'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function LoginPage() {
@@ -54,13 +55,19 @@ export default function LoginPage() {
           }}
         />
         <div className="relative z-10 flex flex-col justify-between p-12 text-primary-foreground">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-              <Heart className="h-7 w-7 fill-current" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight">MediCare</h1>
-              <p className="text-xs text-white/80">Hospital System</p>
+          <div className="flex h-16 items-center">
+            <div className="flex items-center gap-3">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                <img
+                  src="/logo.png"
+                  alt="Discovery Medical Center"
+                  className="h-10 w-10"
+                />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold tracking-tight">Discovery</h1>
+                <p className="text-xs text-white/80">Medical Center</p>
+              </div>
             </div>
           </div>
           <div className="space-y-6">
@@ -87,11 +94,17 @@ export default function LoginPage() {
 
         <div className="w-full max-w-sm mx-auto lg:mx-0 lg:max-w-md">
           {/* Mobile logo */}
-          <div className="lg:hidden flex items-center justify-center gap-2 mb-10">
-            <Heart className="w-10 h-10 text-primary fill-primary" />
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <img
+                src="/logo.png"
+                alt="Discovery Medical Center"
+                className="h-8 w-8"
+              />
+            </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">MediCare</h1>
-              <p className="text-xs text-muted-foreground">Hospital System</p>
+              <h1 className="text-2xl font-bold text-foreground">Discovery</h1>
+              <p className="text-xs text-muted-foreground">Medical Center</p>
             </div>
           </div>
 

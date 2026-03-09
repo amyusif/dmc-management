@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'MediCare - Hospital Management System',
-  description: 'Modern hospital management system for patient care, appointments, and medical records',
+  title: 'Discovery Medical Center - Hospital Management System',
+  description: 'Discovery Medical Center - Modern hospital management system for patient care, appointments, and medical records',
   generator: 'v0.app',
   icons: {
     icon: [

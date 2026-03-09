@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { BrandLogo } from '@/components/brand-logo'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   LayoutDashboard,
@@ -18,7 +19,6 @@ import {
   ChevronDown,
   Menu,
   X,
-  Heart,
   FolderOpen,
   UserCircle,
 } from 'lucide-react'
@@ -139,12 +139,8 @@ export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
           open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
       >
-        <div className="flex items-center gap-3 p-6 border-b border-sidebar-border">
-          <Heart className="w-6 h-6 text-primary fill-primary" />
-          <div>
-            <h1 className="text-xl font-bold text-sidebar-foreground">MediCare</h1>
-            <p className="text-xs text-muted-foreground">Hospital System</p>
-          </div>
+        <div className="p-6 border-b border-sidebar-border">
+          <BrandLogo showText={true} href="/dashboard" logoSize={40} textSize="md" />
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
