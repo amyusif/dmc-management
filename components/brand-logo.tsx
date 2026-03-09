@@ -31,13 +31,13 @@ export function BrandLogo({
   }
 
   const content = (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-1.5 ${className}`}>
       <div className="flex-shrink-0">
         <Image
           src="/logo.png"
           alt="Discovery Medical Center"
-          width={logoSize}
-          height={logoSize}
+          width={14}
+          height={14}
           className="w-auto h-auto"
           priority
         />

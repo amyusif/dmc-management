@@ -140,7 +140,7 @@ export function Sidebar({ userRole = 'STAFF' }: { userRole?: string }) {
         )}
       >
         <div className="h-20 flex items-center px-6 border-b border-sidebar-border">
-          <BrandLogo showText={true} href="/dashboard" logoSize={20} textSize="sm" />
+          <BrandLogo showText={true} href="/dashboard" logoSize={14} textSize="sm" />
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
