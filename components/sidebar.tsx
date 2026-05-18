@@ -21,6 +21,11 @@ import {
   X,
   FolderOpen,
   UserCircle,
+  Bed,
+  Stethoscope,
+  Microscope,
+  Pill,
+  DollarSign,
 } from 'lucide-react'
 
 interface NavLink {
@@ -94,6 +99,41 @@ const navItems: NavItem[] = [
     href: '/messages',
     icon: <MessageSquare className="w-5 h-5" />,
     roles: ['ADMIN', 'RECEPTIONIST', 'STAFF'],
+  },
+  {
+    type: 'link',
+    label: 'In-Patient',
+    href: '/in-patient',
+    icon: <Bed className="w-5 h-5" />,
+    roles: ['ADMIN', 'DOCTOR', 'NURSE', 'RECEPTIONIST'],
+  },
+  {
+    type: 'link',
+    label: 'Out-Patients',
+    href: '/out-patients',
+    icon: <Stethoscope className="w-5 h-5" />,
+    roles: ['ADMIN', 'DOCTOR', 'NURSE', 'RECEPTIONIST'],
+  },
+  {
+    type: 'link',
+    label: 'Labs',
+    href: '/labs',
+    icon: <Microscope className="w-5 h-5" />,
+    roles: ['ADMIN', 'DOCTOR', 'NURSE', 'RECEPTIONIST'],
+  },
+  {
+    type: 'link',
+    label: 'Pharmacy',
+    href: '/pharmacy',
+    icon: <Pill className="w-5 h-5" />,
+    roles: ['ADMIN', 'DOCTOR', 'NURSE', 'RECEPTIONIST'],
+  },
+  {
+    type: 'link',
+    label: 'Billing',
+    href: '/billing',
+    icon: <DollarSign className="w-5 h-5" />,
+    roles: ['ADMIN', 'RECEPTIONIST'],
   },
   {
     type: 'link',

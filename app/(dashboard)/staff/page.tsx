@@ -25,7 +25,30 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import { Plus, Search, Edit2, Trash2, Loader2 } from 'lucide-react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Staff } from '@prisma/client'
+
+const DEPARTMENTS = [
+  { value: 'cardiology', label: 'Cardiology' },
+  { value: 'neurology', label: 'Neurology' },
+  { value: 'orthopedics', label: 'Orthopedics' },
+  { value: 'pediatrics', label: 'Pediatrics' },
+  { value: 'oncology', label: 'Oncology' },
+  { value: 'surgery', label: 'Surgery' },
+  { value: 'emergency', label: 'Emergency' },
+  { value: 'icu', label: 'ICU' },
+  { value: 'radiology', label: 'Radiology' },
+  { value: 'pathology', label: 'Pathology' },
+  { value: 'administration', label: 'Administration' },
+  { value: 'nursing', label: 'Nursing' },
+  { value: 'pharmacy', label: 'Pharmacy' },
+]
 
 interface StaffWithUser extends Staff {
   user: {
@@ -46,6 +69,13 @@ export default function StaffPage() {
   const [isOpen, setIsOpen] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
   const [error, setError] = useState('')
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    department: '',
+    position: '',
+  })
 
   const fetchStaff = useCallback(async () => {
     setLoading(true)
@@ -83,6 +113,19 @@ export default function StaffPage() {
 
   const filteredStaff = staff
 
+  const handleAddStaff = () => {
+    if (formData.fullName && formData.email && formData.department) {
+      // Handle add staff logic
+      console.log('Adding staff:', formData)
+      setFormData({ fullName: '', email: '', phone: '', department: '', position: '' })
+      setIsOpen(false)
+    }
+  }
+
+  const handleOpenDialog = () => {
+    setFormData({ fullName: '', email: '', phone: '', department: '', position: '' })
+  }
+
   return (
     <DashboardLayout>
       <AlertDialog open={deleteId !== null} onOpenChange={(open) => !open && setDeleteId(null)}>
@@ -115,7 +158,7 @@ export default function StaffPage() {
           </div>
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2">
+              <Button className="gap-2" onClick={handleOpenDialog}>
                 <Plus className="w-4 h-4" />
                 Add Staff
               </Button>
@@ -128,17 +171,58 @@ export default function StaffPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 py-4">
-                <Input placeholder="Full Name" />
-                <Input placeholder="Email" type="email" />
-                <Input placeholder="Phone Number" />
-                <Input placeholder="Department" />
-                <Input placeholder="Position" />
+                <Input
+                  placeholder="Full Name"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                />
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Department</label>
+                  <Select value={formData.department} onValueChange={(value) =>
+                    setFormData({ ...formData, department: value })
+                  }>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a department" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {DEPARTMENTS.map((dept) => (
+                        <SelectItem key={dept.value} value={dept.value}>
+                          {dept.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Input
+                  placeholder="Position"
+                  value={formData.position}
+                  onChange={(e) =>
+                    setFormData({ ...formData, position: e.target.value })
+                  }
+                />
               </div>
               <div className="flex gap-2 justify-end">
                 <Button variant="outline" onClick={() => setIsOpen(false)}>
                   Cancel
                 </Button>
-                <Button onClick={() => setIsOpen(false)}>Add Staff</Button>
+                <Button onClick={handleAddStaff}>Add Staff</Button>
               </div>
             </DialogContent>
           </Dialog>
